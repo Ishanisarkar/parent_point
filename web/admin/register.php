@@ -82,30 +82,26 @@ if (isset($_POST['signin'])) {
 
 if (isset($_POST['add_gifts'])) {
   $currentDir = getcwd();
-  $tar = "\imgs";
+  $tar = "imgs/";
   $target = addslashes($currentDir . $tar);
 
   $id = mysqli_real_escape_string($db, $_POST['id']);
   $product_name = mysqli_real_escape_string($db, $_POST['product_name']);
   $product_category = mysqli_real_escape_string($db, $_POST['product_category']);
   $product_description = mysqli_real_escape_string($db, $_POST['product_description']);
-  $product_image = mysqli_real_escape_string($db, $_POST['product_image']);
-  //$fileTarget = $target.$file;
+  //$product_image = mysqli_real_escape_string($db, $_POST['product_image']);
+  $fileTarget = $target.$file;
   $file = $_FILES['product_image']['name'];
 	$tempFileName = $_FILES['product_image']['tmp_name'];
-  $path = $target . $file;
+
   //$product_image = mysqli_real_escape_string($db, $_POST['product_image']);
   $product_price = mysqli_real_escape_string($db, $_POST['product_price']);
-  $result = move_uploaded_file($tempFileName , $path);
+  $result = move_uploaded_file($tempFileName , "imgs/".$file);
+  $filename = $_FILES['product_image']['name'];
 
+  $image_name = addslashes($_FILES['product_image']['name']);
+  $path =  $target . $image_name;
 
-
-
-  echo $id;
-  echo $product_name;
-  echo $product_category;
-  echo $product_description;
-  //echo $product_image;
   echo $product_price;
   if (empty($id)) {
   	array_push($errors, "id is required");

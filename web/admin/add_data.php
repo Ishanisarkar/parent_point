@@ -75,7 +75,7 @@
 </div>
 
   <center>
-  <form method= "POST" action = "register.php">
+  <form method= "POST" action = "register.php" enctype="multipart/form-data">
 
   <table>
   <tr>  <caption><h2> Add Data For Gifts<h2> </caption> </tr>
